@@ -52,7 +52,6 @@ Personal-Dashboard/
 ```
 
 ## Identitas Pengembang
-- **Nama:** [Nama Lengkap]
-- **NIM:** [NIM]
-- **Program Studi:** Teknik Informatika
-- **Perguruan Tinggi:** Institut Teknologi Sumatera (ITERA)
+- **Nama:** Fauzan Habib Pratama
+- **NIM:** 124140017
+- **Tugas:** Praktikum Paw2
