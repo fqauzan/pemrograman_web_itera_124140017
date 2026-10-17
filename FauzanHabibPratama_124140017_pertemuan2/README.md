@@ -42,11 +42,13 @@ Berikut tampilan ITERA Student Dashboard.
 ## Struktur Folder
 ```text
 Personal-Dashboard/
+├──image
+|   └── 1.png
 ├── index.html
 ├── style.css
 ├── script.js
-├── README.md
-└── 1.png
+└──  README.md
+
 ```
 
 ## Identitas Pengembang
