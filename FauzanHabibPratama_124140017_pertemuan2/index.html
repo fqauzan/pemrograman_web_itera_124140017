@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITERA Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>🎓 ITERA Student Dashboard</h1>
+        <p id="cuaca">Memuat cuaca...</p>
+    </header>
+
+    <main>
+        <section class="kiri">
+            <div class="panel">
+                <h2>📌 Informasi Akademik</h2>
+                <p><b>Kampus:</b> Institut Teknologi Sumatera</p>
+                <p><b>Lokasi:</b> Lampung Selatan</p>
+                <p><b>Status:</b> Mahasiswa Aktif</p>
+                <p><b>Tanggal:</b> <span id="tanggal"></span></p>
+            </div>
+
+            <div class="panel motivasi">
+                <h3>💡 Motivasi Hari Ini</h3>
+                <p id="motivasi">Semangat belajar!</p>
+            </div>
+        </section>
+
+        <section class="panel tugas">
+            <h2>📝 Daftar Tugas dan Catatan Kuliah</h2>
+
+            <form id="formTugas">
+                <input type="hidden" id="idTugas">
+
+                <div class="form-atas">
+                    <input type="text" id="nama"
+                        placeholder="Nama tugas kuliah..." required>
+
+                    <select id="kategori">
+                        <option value="Tugas">Tugas</option>
+                        <option value="Praktikum">Praktikum</option>
+                        <option value="Ujian">Ujian</option>
+                        <option value="Catatan">Catatan</option>
+                    </select>
+
+                    <button type="submit" id="tombolSimpan">Tambah</button>
+                </div>
+
+                <input type="text" id="matkul"
+                    placeholder="Nama mata kuliah" required>
+
+                <input type="date" id="deadline" required>
+
+                <select id="prioritas">
+                    <option value="Rendah">Prioritas Rendah</option>
+                    <option value="Sedang" selected>Prioritas Sedang</option>
+                    <option value="Tinggi">Prioritas Tinggi</option>
+                </select>
+
+                <textarea id="catatan"
+                    placeholder="Catatan (opsional)" rows="2"></textarea>
+
+                <button type="button" id="tombolBatal" hidden>
+                    Batal Edit
+                </button>
+            </form>
+
+            <div id="daftarTugas"></div>
+        </section>
+    </main>
+
+    <footer>
+        ITERA Student Dashboard | Tugas Pemrograman Web
+    </footer>
+
+</body>
+</html>
