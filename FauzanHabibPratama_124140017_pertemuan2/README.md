@@ -37,7 +37,7 @@ Proyek ini dapat menggunakan konsep JavaScript modern berikut sesuai implementas
 ## Screenshot
 Berikut tampilan ITERA Student Dashboard.
 
-![Screenshot ITERA Student Dashboard](1.png)
+![Screenshot ITERA Student Dashboard](image/1.png)
 
 ## Struktur Folder
 ```text
