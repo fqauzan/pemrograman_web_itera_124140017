@@ -56,15 +56,15 @@ npm run build
 
 ### Halaman Utama
 
-![Halaman Utama](<assets/foto 1.png>)
+![Halaman Utama](<src/assets/1.png>)
 
 ### Daftar Buku
 
-![Daftar Buku](<assets/foto 2.png>)
+![Daftar Buku](<src/assets/2.png>)
 
 ### Halaman Statistik
 
-![Halaman Statistik](<assets/foto 3.png>)
+![Halaman Statistik](<src/assets/3.png>)
 
 ## 5. Fitur React yang Digunakan
 
