@@ -62,10 +62,6 @@ npm run build
 
 ![Daftar Buku](<src/assets/2.png>)
 
-### Halaman Statistik
-
-![Halaman Statistik](<src/assets/3.png>)
-
 ## 5. Fitur React yang Digunakan
 
 ### React Components
@@ -98,7 +94,7 @@ Unit test dijalankan menggunakan Vitest dan React Testing Library.
 
 Screenshot berikut berisi hasil eksekusi pengujian dari terminal.
 
-![Hasil Unit Test](<assets/foto 3.png>)
+![Hasil Unit Test](<src/assets/3.png>)
 
 ## 7. Komentar Kode
 
