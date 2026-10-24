@@ -1,0 +1,99 @@
+
+.book-list {
+  width: 100%;
+}
+
+.book-list h2 {
+  margin: 0 0 20px;
+  color: #292b27;
+  font-size: 21px;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.book-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #e5e4dd;
+  border-radius: 8px;
+  background: #fcfcf9;
+}
+
+.book-card h3 {
+  margin: 0 0 14px;
+  color: #35432e;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.book-card p {
+  margin: 8px 0;
+  color: #73756c;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.book-card p strong {
+  color: #55584f;
+}
+
+/* Membuat jarak nyata antara tombol */
+.book-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.book-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 78px;
+  min-height: 36px;
+  margin: 0;
+  padding: 8px 15px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.book-actions .edit-button {
+  background: #59694c;
+  color: #fff;
+}
+
+.book-actions .edit-button:hover {
+  background: #46553b;
+}
+
+.book-actions .delete-button {
+  background: #f5ebe7;
+  border-color: #e5d8d3;
+  color: #875448;
+}
+
+.book-actions .delete-button:hover {
+  background: #eadbd5;
+}
+
+.empty-message {
+  padding: 25px;
+  border: 1px dashed #dcded6;
+  border-radius: 8px;
+  color: #777970;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,25 @@
+
+.stats-page {
+  padding: 24px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.stats-card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.stats-card h2 {
+  font-size: 16px;
+}
+
+.stats-card p {
+  font-size: 28px;
+  font-weight: bold;
+}

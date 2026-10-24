@@ -1,0 +1,23 @@
+
+.book-filter {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.book-filter input,
+.book-filter select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+}
+
+@media (max-width: 560px) {
+  .book-filter {
+    grid-template-columns: 1fr;
+  }
+}
