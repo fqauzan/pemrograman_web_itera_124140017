@@ -1,9 +1,9 @@
 # Praktikum PAW - Pertemuan 5: Python OOP
 
 ## Identitas Mahasiswa
-- **Nama Lengkap** : Fauzan Habib Paratama
+- **Nama Lengkap** : Fauzan Habib Pratama
 - **NIM**          : 124140017
-- **Kelas Praktikum** : [RA / RB]
+- **Kelas Praktikum** : RB
 
 ## Deskripsi Program
 Sistem Manajemen Perpustakaan Sederhana berbasis OOP Python.
