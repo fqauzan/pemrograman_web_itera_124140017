@@ -1,190 +1,157 @@
-\# Pyramid RESTful API: Mahasiswa \& Matakuliah
+# Pyramid RESTful API: Mahasiswa & Matakuliah
 
+## Identitas
+- Nama Lengkap : Fauzan Habib Pratama
+- NIM          : 124140017
+- Kelas        : RB
 
-
-\## Identitas
-
-\- Nama Lengkap : Fauzan Habib Pratama
-
-\- NIM          : 124140017
-
-\- Kelas        : RB
-
-
-
-\## Deskripsi
-
+## Deskripsi
 Aplikasi RESTful API berbasis Pyramid Framework dan PostgreSQL untuk
-
 mengelola data Mahasiswa dan Matakuliah. Aplikasi memakai SQLAlchemy ORM,
-
 migrasi database dengan Alembic, dan mengembalikan respons berformat JSON.
 
-
-
-\## Instalasi
-
+## Instalasi
 Prasyarat: Python 3.12, PostgreSQL, Git.
 
+    python -m venv venv
+    venv\Scripts\activate.bat
+    python -m pip install --upgrade pip setuptools
+    pip install -e ".[testing]"
+    pip install psycopg2-binary
 
-
-&#x20;   python -m venv venv
-
-&#x20;   venv\\Scripts\\activate.bat
-
-&#x20;   python -m pip install --upgrade pip setuptools
-
-&#x20;   pip install -e ".\[testing]"
-
-&#x20;   pip install psycopg2-binary
-
-
-
-\## Konfigurasi Database
-
+## Konfigurasi Database
 Buat database dan user di PostgreSQL:
 
-
-
-&#x20;   CREATE DATABASE pyramid\_mahasiswa;
-
-&#x20;   CREATE USER pyramid\_user WITH ENCRYPTED PASSWORD 'pyramid\_pass';
-
-&#x20;   GRANT ALL PRIVILEGES ON DATABASE pyramid\_mahasiswa TO pyramid\_user;
-
-&#x20;   ALTER DATABASE pyramid\_mahasiswa OWNER TO pyramid\_user;
-
-
+    CREATE DATABASE pyramid_mahasiswa;
+    CREATE USER pyramid_user WITH ENCRYPTED PASSWORD 'pyramid_pass';
+    GRANT ALL PRIVILEGES ON DATABASE pyramid_mahasiswa TO pyramid_user;
+    ALTER DATABASE pyramid_mahasiswa OWNER TO pyramid_user;
 
 Pada `development.ini`, `sqlalchemy.url` memakai driver psycopg2:
 
+    sqlalchemy.url = postgresql+psycopg2://pyramid_user:pyramid_pass@localhost:5432/pyramid_mahasiswa
 
+## Migrasi dan Seeding
 
-&#x20;   sqlalchemy.url = postgresql+psycopg2://pyramid\_user:pyramid\_pass@localhost:5432/pyramid\_mahasiswa
+    alembic -c development.ini upgrade head
+    python -m pyramid_mahasiswa.scripts.initialize_db development.ini
 
+## Menjalankan Server
 
-
-\## Migrasi dan Seeding
-
-
-
-&#x20;   alembic -c development.ini upgrade head
-
-&#x20;   python -m pyramid\_mahasiswa.scripts.initialize\_db development.ini
-
-
-
-\## Menjalankan Server
-
-
-
-&#x20;   pserve development.ini --reload
-
-
+    pserve development.ini --reload
 
 Server berjalan di http://localhost:6543
 
-
-
-\## Daftar Endpoint
-
-
+## Daftar Endpoint
 
 | Method | URL | Keterangan |
-
 |--------|-----|------------|
-
 | GET | /api/mahasiswa | Semua mahasiswa |
-
 | GET | /api/mahasiswa/{id} | Detail mahasiswa |
-
 | POST | /api/mahasiswa | Tambah mahasiswa |
-
 | PUT | /api/mahasiswa/{id} | Ubah mahasiswa |
-
 | DELETE | /api/mahasiswa/{id} | Hapus mahasiswa |
-
 | GET | /api/matakuliah | Semua matakuliah |
-
 | GET | /api/matakuliah/{id} | Detail matakuliah (404 jika tidak ada) |
-
 | POST | /api/matakuliah | Tambah matakuliah (400 jika tidak valid) |
-
 | PUT | /api/matakuliah/{id} | Ubah matakuliah |
-
 | DELETE | /api/matakuliah/{id} | Hapus matakuliah |
 
+Validasi Matakuliah: `kode_mk`, `nama_mk`, `sks`, dan `semester` wajib diisi,
+`sks` dan `semester` harus bilangan bulat lebih dari 0, dan `kode_mk` harus unik.
 
+## Bukti Pengujian (cURL)
 
-Validasi Matakuliah: `kode\_mk`, `nama\_mk`, `sks`, dan `semester` wajib diisi,
+### Matakuliah
 
-`sks` dan `semester` harus bilangan bulat lebih dari 0, dan `kode\_mk` harus unik.
+**1. GET semua matakuliah**
 
+Menampilkan seluruh data matakuliah.
 
+<img src="screenshots/mk_1_get_all.png" alt="GET semua matakuliah" width="800">
 
-\## Bukti Pengujian (cURL)
+**2. GET satu matakuliah**
 
+Menampilkan detail matakuliah berdasarkan ID.
 
+<img src="screenshots/mk_2_get_one.png" alt="GET satu matakuliah" width="800">
 
-\### Matakuliah
+**3. POST tambah matakuliah**
 
-GET semua: !\[mk get all](screenshots/mk\_1\_get\_all.png)
+Menambah matakuliah baru dengan data yang valid.
 
+<img src="screenshots/mk_3_post.png" alt="POST matakuliah" width="800">
 
+**4. POST dengan field kosong (400 Bad Request)**
 
-GET satu: !\[mk get one](screenshots/mk\_2\_get\_one.png)
+Ditolak karena ada field wajib yang kosong.
 
+<img src="screenshots/mk_4_post_400_kosong.png" alt="POST matakuliah field kosong" width="800">
 
+**5. POST dengan sks tidak valid (400 Bad Request)**
 
-POST: !\[mk post](screenshots/mk\_3\_post.png)
+Ditolak karena `sks` bukan bilangan bulat lebih dari 0.
 
+<img src="screenshots/mk_5_post_400_sks.png" alt="POST matakuliah sks tidak valid" width="800">
 
+**6. PUT ubah matakuliah**
 
-POST 400 (field kosong): !\[mk 400 kosong](screenshots/mk\_4\_post\_400\_kosong.png)
+Mengubah data matakuliah berdasarkan ID.
 
+<img src="screenshots/mk_6_put.png" alt="PUT matakuliah" width="800">
 
+**7. DELETE hapus matakuliah**
 
-POST 400 (sks tidak valid): !\[mk 400 sks](screenshots/mk\_5\_post\_400\_sks.png)
+Menghapus matakuliah berdasarkan ID.
 
+<img src="screenshots/mk_7_delete.png" alt="DELETE matakuliah" width="800">
 
+**8. GET matakuliah yang sudah dihapus (404 Not Found)**
 
-PUT: !\[mk put](screenshots/mk\_6\_put.png)
+Data tidak ditemukan karena sudah dihapus.
 
+<img src="screenshots/mk_8_get_404.png" alt="GET matakuliah 404" width="800">
 
+### Mahasiswa
 
-DELETE: !\[mk delete](screenshots/mk\_7\_delete.png)
+**1. GET semua mahasiswa**
 
+Menampilkan seluruh data mahasiswa.
 
+<img src="screenshots/mhs_1_get_all.png" alt="GET semua mahasiswa" width="800">
 
-GET 404: !\[mk 404](screenshots/mk\_8\_get\_404.png)
+**2. GET satu mahasiswa**
 
+Menampilkan detail mahasiswa berdasarkan ID.
 
+<img src="screenshots/mhs_2_get_one.png" alt="GET satu mahasiswa" width="800">
 
-\### Mahasiswa
+**3. POST tambah mahasiswa**
 
-GET semua: !\[mhs get all](screenshots/mhs\_1\_get\_all.png)
+Menambah mahasiswa baru dengan data yang valid.
 
+<img src="screenshots/mhs_3_post.png" alt="POST mahasiswa" width="800">
 
+**4. POST tanpa NIM (400 Bad Request)**
 
-GET satu: !\[mhs get one](screenshots/mhs\_2\_get\_one.png)
+Ditolak dengan pesan "Field nim wajib diisi!".
 
+<img src="screenshots/mhs_4_post_400.png" alt="POST mahasiswa 400" width="800">
 
+**5. PUT ubah mahasiswa (200 OK)**
 
-POST: !\[mhs post](screenshots/mhs\_3\_post.png)
+Jurusan mahasiswa berhasil diubah.
 
+<img src="screenshots/mhs_5_put.png" alt="PUT mahasiswa" width="800">
 
+**6. DELETE hapus mahasiswa (200 OK)**
 
-POST 400: !\[mhs 400](screenshots/mhs\_4\_post\_400.png)
+Mahasiswa berhasil dihapus.
 
+<img src="screenshots/mhs_6_delete.png" alt="DELETE mahasiswa" width="800">
 
+**7. GET mahasiswa yang sudah dihapus (404 Not Found)**
 
-PUT: !\[mhs put](screenshots/mhs\_5\_put.png)
+Data tidak ditemukan karena sudah dihapus.
 
-
-
-DELETE: !\[mhs delete](screenshots/mhs\_6\_delete.png)
-
-
-
-GET 404: !\[mhs 404](screenshots/mhs\_7\_get\_404.png)
-
+<img src="screenshots/mhs_7_get_404.png" alt="GET mahasiswa 404" width="800">
